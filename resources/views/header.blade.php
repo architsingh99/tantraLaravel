@@ -14,18 +14,18 @@
     <meta name="author" content="" />
     <meta name="MobileOptimized" content="320" />
     <!--srart theme style -->
-    <link rel="stylesheet" type="text/css" href="css/animate.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="css/fonts.css" />
-    <link rel="stylesheet" type="text/css" href="css/flaticon.css" />
-	<link rel="stylesheet" type="text/css" href="css/sign_flaticon.css" />
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css" />
-    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.css" />
-    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
-    <link rel="stylesheet" type="text/css" href="css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/flaticon.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/sign_flaticon.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.theme.default.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/magnific-popup.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css')}}" />
     <!-- favicon links -->
     <link rel="shortcut icon" type="image/png" href="{{asset('images/header/favicon.ico')}}" />
 <script src='../../../google_analytics_auto.js'></script></head>
@@ -37,21 +37,21 @@
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <div class="hs_logo_wrapper">
-                        <a href="index.html"><img src="images/header/logo.png" alt="logo"></a>
+                        <a href="{{route('home')}}"><img src="{{ asset('images/header/logo.png')}}" alt="logo"></a>
                     </div>
                     <nav class="hs_main_menu hidden-xs">
                         <ul>
                             <li>
                                 <div class="dropdown-wrapper menu-button">
-                                    <a class="menu-button" href="index.html">Home</a>
+                                    <a class="menu-button" href="{{route('home')}}">Home</a>
                                     
                                 </div>
                             </li>
                             
                             <li>
                                 <div class="dropdown-wrapper menu-button">
-                                    <a class="menu-button" href="product.html">Products</a>
-                                    <div class="drop-menu hs_mega_menu">
+                                    <a class="menu-button" href="{{route('products')}}">Products</a>
+                                    <!-- <div class="drop-menu hs_mega_menu">
                                         <a class="menu-button" href="#">Love Talisman</a>
                                         <a class="menu-button" href="#">Laxmi/Mony Attraction Talisman</a>
                                         <a class="menu-button" href="#">Vashi karam/Attraction Talisman</a>
@@ -61,7 +61,7 @@
                                         <a class="menu-button" href="#">Condles Incense and Resins</a>
                                         <a class="menu-button" href="#">Tantra Oils and Powders</a>
                                        
-                                    </div>
+                                    </div> -->
                                 </div>
                             </li>
                             <li>
@@ -140,7 +140,7 @@
 														</svg>
 													</a>
                                         <nav class="cd-dropdown">
-                                            <h2><a href="index.html">Tantra</a></h2>
+                                            <h2><a href="{{route('home')}}">Tantra</a></h2>
                                             <a href="#0" class="cd-close">Close</a>
                                             <ul class="cd-dropdown-content">
                                                 <li>
@@ -153,7 +153,7 @@
                                                 
                                             </li>
                                                 <li >
-                                                    <a href="index.html">Home</a>
+                                                    <a href="{{route('home')}}">Home</a>
 
                                 
                                                 </li>

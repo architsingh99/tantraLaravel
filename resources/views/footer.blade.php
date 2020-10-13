@@ -15,17 +15,17 @@
     
     <!-- hs bottom footer wrapper End -->
     <!--main js file start-->
-    <script src="js/jquery_min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/jquery.menu-aim.js"></script>
-    <script src="js/parallax.min.js"></script>
-    <script src="js/owl.carousel.js"></script>
-    <script src="js/jquery.shuffle.min.js"></script>
-    <script src="js/jquery.countTo.js"></script>
-    <script src="js/jquery.inview.min.js"></script>
-    <script src="js/jquery.magnific-popup.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="{{ asset('js/jquery_min.js')}}"></script>
+    <script src="{{ asset('js/bootstrap.js')}}"></script>
+    <script src="{{ asset('js/modernizr.js')}}"></script>
+    <script src="{{ asset('js/jquery.menu-aim.js')}}"></script>
+    <script src="{{ asset('js/parallax.min.js')}}"></script>
+    <script src="{{ asset('js/owl.carousel.js')}}"></script>
+    <script src="{{ asset('js/jquery.shuffle.min.js')}}"></script>
+    <script src="{{ asset('js/jquery.countTo.js')}}"></script>
+    <script src="{{ asset('js/jquery.inview.min.js')}}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.js')}}"></script>
+    <script src="{{ asset('js/custom.js')}}"></script>
     <!--main js file end-->
 </body>
 

@@ -32,7 +32,7 @@
                                                     </div>
                                                     <div class="hs_slider_tabs_icon_cont_wrapper">
                                                         <ul>
-                                                            <li><a href="tantra_class.html" class="hs_tabs_btn">{{$value->name}}</a></li>
+                                                            <li><a href="{{route('services', $value->id)}}" class="hs_tabs_btn">{{$value->name}}</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -72,7 +72,7 @@
                                                     </div>
                                                     <div class="hs_slider_tabs_icon_cont_wrapper">
                                                         <ul>
-                                                            <li><a href="tantra_class.html" class="hs_tabs_btn">{{$value->name}}</a></li>
+                                                            <li><a href="{{route('services', $value->id)}}" class="hs_tabs_btn">{{$value->name}}</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="item">
+                <!-- <div class="item">
                     <div class="carousel-captions caption-3">
                         <div class="container">
                             <div class="row">
@@ -125,7 +125,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"><span class="number"></span></li>
                     <li data-target="#carousel-example-generic" data-slide-to="1" class=""><span class="number"></span></li>
@@ -175,7 +175,7 @@
 					<div class="hs_pp_bottom_btn_wrapper">
 						<div class="hs_pp_bottom_btn">
 							<ul>
-								<li><a href="product.html">View All</a></li>
+								<li><a href="{{route('products')}}">View All</a></li>
 							</ul>
 						</div>
 					</div>
@@ -202,10 +202,10 @@
                     <div class="hs_shop_pp_main_box_wrapper service_cart">
                         <div class="hs_shop_pp_img_main_wrapper">
                             <img src="{{ Voyager::image( $value->image )}}" alt="product_img" />
-							<a href="tantra_class.html">View details</a>
+							<a href="{{route('services', $value->id)}}">View details</a>
                         </div>
                         <div class="hs_shop_prodt_img_cont_wrapper hs_shop_pp_img_cont_main_wrapper">
-                            <h2><a href="tantra_class.html">{{$value->name}}</a></h2>
+                            <h2><a href="{{route('services', $value->id)}}">{{$value->name}}</a></h2>
                             <!-- <h3>₹20 &nbsp;<del>₹80</del>&nbsp; <span>(60% off)</span></h3>
                              -->
                         </div>
