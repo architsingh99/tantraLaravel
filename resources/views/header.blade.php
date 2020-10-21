@@ -9,6 +9,7 @@
     <meta charset="utf-8" />
     <title>Tantra</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Horoscope" />
     <meta name="keywords" content="Horoscope" />
     <meta name="author" content="" />
@@ -28,22 +29,23 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css')}}" />
     <!-- favicon links -->
     <link rel="shortcut icon" type="image/png" href="{{asset('images/header/favicon.ico')}}" />
-<script src='../../../google_analytics_auto.js'></script></head>
+<script src='../../../google_analytics_auto.js'></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
 
 <body>
-   
     <div class="hs_navigation_header_wrapper">
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <div class="hs_logo_wrapper">
-                        <a href="{{route('home')}}"><img src="{{ asset('images/header/logo.png')}}" alt="logo"></a>
+                        <a href="{{route('dashboard')}}"><img src="{{ asset('images/header/logo.png')}}" alt="logo"></a>
                     </div>
                     <nav class="hs_main_menu hidden-xs">
                         <ul>
                             <li>
                                 <div class="dropdown-wrapper menu-button">
-                                    <a class="menu-button" href="{{route('home')}}">Home</a>
+                                    <a class="menu-button" href="{{route('dashboard')}}">Home</a>
                                     
                                 </div>
                             </li>
@@ -66,7 +68,7 @@
                             </li>
                             <li>
                                 <div class="dropdown-wrapper menu-button">
-                                    <a class="menu-button" href="services.html">Services</a>
+                                    <a class="menu-button" href="{{route('service')}}">Services</a>
                                    
                                 </div>
                             </li>
@@ -140,9 +142,10 @@
 														</svg>
 													</a>
                                         <nav class="cd-dropdown">
-                                            <h2><a href="{{route('home')}}">Tantra</a></h2>
+                                            <h2><a href="{{route('dashboard')}}">Tantra</a></h2>
                                             <a href="#0" class="cd-close">Close</a>
                                             <ul class="cd-dropdown-content">
+                                                @if(!Auth::check())
                                                 <li>
                                                   
                                                     <div class="dropdown-wrapper menu-button" data-toggle="modal" data-target="#signInModal">
@@ -152,8 +155,9 @@
                                                         </div>
                                                 
                                             </li>
+                                            @endif
                                                 <li >
-                                                    <a href="{{route('home')}}">Home</a>
+                                                    <a href="{{route('dashboard')}}">Home</a>
 
                                 
                                                 </li>
@@ -250,12 +254,14 @@
                                         <!-- .cd-dropdown -->
 
                                     </div>
+                                    @if(Auth::check())
                                     <div class="hs_navi_cart_wrapper">
                                         <div class="dropdown-wrapper menu-button">
                                             <a class="menu-button" href="#"><i class="flaticon-shop"></i><span>3</span></a>
                                             
                                         </div>
                                     </div>
+                                    @endif
                                     
                                 </div>
                             </div>
@@ -268,59 +274,26 @@
                         <input type="text" placeholder="Search here">
                         <button><i class="fa fa-search"></i></button>
                     </div> -->
-                    
+                    @if(Auth::check())
                     <div class="hs_navi_cart_wrapper">
                         <div class="dropdown-wrapper menu-button">
-                            <a class="menu-button" href="#"><i class="flaticon-shop"></i><span>3</span></a>
-                            <div class="drop-menu">
-
-                                <div class="cc_cart_wrapper1 menu-button">
-                                    <div class="cc_cart_img_wrapper">
-                                        <img src="images/content/cart_img.jpg" alt="cart_img" />
-                                    </div>
-                                    <div class="cc_cart_cont_wrapper">
-                                        <h4><a href="#">Gemstone</a></h4>
-                                        <p>Quantity : 2 × ₹45</p>
-                                        <h5>₹90</h5>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                </div>
-                                <div class="cc_cart_wrapper1 menu-button">
-                                    <div class="cc_cart_img_wrapper">
-                                        <img src="images/content/cart_img.jpg" alt="cart_img" />
-                                    </div>
-                                    <div class="cc_cart_cont_wrapper">
-                                        <h4><a href="#">Gemstone</a></h4>
-                                        <p>Quantity : 2 × ₹45</p>
-                                        <h5>₹90</h5>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                </div>
-                                <div class="cc_cart_wrapper1 menu-button">
-                                    <div class="cc_cart_img_wrapper">
-                                        <img src="images/content/cart_img.jpg" alt="cart_img" />
-                                    </div>
-                                    <div class="cc_cart_cont_wrapper">
-                                        <h4><a href="#">Gemstone</a></h4>
-                                        <p>Quantity : 2 × ₹45</p>
-                                        <h5>₹90</h5>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                </div>
-								 <div class="cc_cart_wrapper1 menu-button">
-								 <div class="hs_effect_btn ceckout_btn">
-									<ul>
-										<li><a href="#" class="hs_btn_hover">View Card</a></li>
-									</ul>
-								</div>
-								</div>
-                            </div>
+                            <a class="menu-button" href="{{route('cart')}}"><i class="flaticon-shop"></i><span>3</span></a>
                         </div>
                     </div>
+                    @endif
                     <div class="hs_navi_cart_wrapper">
+                        @if(!Auth::check())
                         <div  class="dropdown-wrapper menu-button"  data-toggle="modal" data-target="#signInModal" > 
                             <a style="color: #fff;" class="menu-button" href="#"> LogIn<i style=" margin-left: 10px;" class="fa fa-user-circle-o"></i></a>
                             </div>
+                        @else
+                        <div  class="dropdown-wrapper menu-button"> 
+                        <a style="color: #fff;" class="menu-button" href="#">
+                        {{Auth::user()->name}}
+                        <i style=" margin-left: 10px;" class="fa fa-user-circle-o"></i></a>
+                     </div>
+                        
+                            @endif
                     </div>
                     <!-- <div class="hs_top_user_profile" data-toggle="modal" data-target="#myModal">
                         <i class="fa fa-user-circle-o" aria-hidden="true"></i>
@@ -335,10 +308,21 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">Sing In</h4>
                             </div>
+                            <form method="POST" action="{{ route('login') }}">
+                        @csrf
                             <div style="text-align: center" class="modal-body">
-                                <input type="email" placeholder="Enter Your Email...">
-                                <input type="password" placeholder="Enter Your Password...">
-                                
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter Your Email...">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Enter Your Password...">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                
                                 <a  href="#" id="forgotPW_popup" >Forgot Your Password</a>
                                 <p style="    margin-top: 10px;">Don't have an account <a href="#" id="register_popup" ><b> Register</b></a> </p>
@@ -348,6 +332,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
+                            </form>
                            
                         </div>
 
@@ -367,12 +352,32 @@
                     <h4 class="modal-title">Sing Up</h4>
                 </div>
                 <div class="modal-body centered">
-                    <input type="Name" placeholder="Enter Your Name...">
-                    <input type="email" placeholder="Enter Your Email...">
-                    <input style="margin-top: 20px;" type="number" placeholder="Enter Your Phone Number...">
-                    <input style="margin-top: 20px;" type="password" placeholder="Enter Your Password...">
+                <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Enter Your Name...">
+                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter Your Email...">
+                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <br>
+                    <!-- <input style="margin-top: 20px;" type="number" placeholder="Enter Your Phone Number..."> -->
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Enter Your Password...">
+                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <br>
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Enter Your Password...">
                     <button type="submit">Register</button>
-                    
+                    </form>
                 </div>
                 
                 <div class="modal-footer">

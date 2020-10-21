@@ -35,8 +35,8 @@
                               </div>
                               <div class="hs_blog_right_cate_list_cont_wrapper">
                                   <ul>
-                                  @foreach($products as $key => $value)
-                                      <li><a href="#">{{$value->name}}</a></li>
+                                  @foreach($cat as $key => $value)
+                                      <li><a href="{{route('products2', $value->id)}}">{{$value->name}}</a></li>
                                       @endforeach
                                   </ul>
                               </div>

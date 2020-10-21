@@ -12,6 +12,82 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+    function addToCart(url)
+        {
+            let d = document.getElementById('input-quantity').value;
+            $.ajax({
+                type: "POST",
+                url: url, // You add the id of the post and the update datetime to the url as well
+				data: {
+                _token: document.getElementById('token').value,
+                product_id: document.getElementById('product_id').value,
+                quantity: d
+            },
+                success: function (response) {
+                    swal({
+            		title: "Success",
+            		text: response.data.message,
+            		icon: "success"
+        	})
+                }
+            });
+        }
+
+        function verifyPincode(url)
+        {
+            let p = document.getElementById('pincode').value;
+            $.ajax({
+                type: "POST",
+                url: url, // You add the id of the post and the update datetime to the url as well
+				data: {
+                _token: document.getElementById('token').value,
+                pincode: p
+            },
+                success: function (response) {
+                    document.getElementById('deliveryDays').innerHTML = response.data.message;
+                }
+            });
+        }
+
+        function deleteFromCart(url) {
+    swal({
+            title: "Are you sure?",
+            text: "You wamt to delete from delete!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                document.location.href = url;
+            } else {
+                swal("Cancelled!");
+            }
+        });
+}
+
+function changeQuantity(quantity, sellingPrice, id, url)
+        {
+            let htmlId = "price" + id;
+            document.getElementById(htmlId).innerHTML = Number(quantity) * Number(sellingPrice);
+            $.ajax({
+                type: "POST",
+                url: url, // You add the id of the post and the update datetime to the url as well
+				data: {
+                _token: document.getElementById('token').value,
+                id: id,
+                quantity: quantity
+            },
+                success: function (response) {
+                    console.log(response)
+                }
+            }); 
+        }
+
+        </script>
     
     <!-- hs bottom footer wrapper End -->
     <!--main js file start-->

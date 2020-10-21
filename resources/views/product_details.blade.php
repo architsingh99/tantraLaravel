@@ -101,9 +101,10 @@
                         </div>
                     </div>
                     <div class="hs_shop_single_co_wrapper">
-                        <input type="text" placeholder="Enter Pin Code">
-                        <button type="submit">CHECK OUT</button>
-                        <p>30 Days Refund/Exchange</p>
+                        <?php $pincodeUrl = route('check-pincode'); ?>
+                        <input type="text" placeholder="Enter Pin Code" id="pincode">
+                        <button type="button" onclick="verifyPincode('{{$pincodeUrl}}')">Check</button>
+                        <p id="deliveryDays"></p>
                     </div>
                     <div class="row">
                         <div class="col-lg-4 col-md-5 col-sm-4 col-xs-12">
@@ -112,18 +113,20 @@
                                     <div class="select_number">
                                         <button onclick="changeQty(1); return false;" class="increase"><i class="fa fa-plus"></i>
 									</button>
-                                        <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
-                                        <button onclick="changeQty(0); return false;" class="decrease"><i class="fa fa-minus"></i>
+                                        <input type="number" name="quantity" value="1" min="1" size="2" id="input-quantity" class="form-control" />
+                                        <button onclick="changeQty(-1); return false;" class="decrease"><i class="fa fa-minus"></i>
 									</button>
                                     </div>
-                                    <input type="hidden" name="product_id" />
+                                    <input type="hidden" name="product_id" id="product_id" value="{{$product->id}}" />
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">
                         <div class="col-lg-8 col-md-7 col-sm-8 col-xs-12">
                             <div class="hs_shop_single_cart_btn">
                                 <ul>
-                                    <li><a href="#">BUY NOW</a></li>
+                                    <?php $route = route('add-to-cart') ?>
+                                    <li><a href="#" onclick="addToCart('{{$route}}')">Add To Cart</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -175,5 +178,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+        function changeQty(quantity)
+        {
+            let q = Number(document.getElementById('input-quantity').value) + Number(quantity);
+            if(q <= 0)
+                swal({
+            		title: "Error",
+            		text: "Minimum value is 1",
+            		icon: "error"
+        	    })
+            else
+                document.getElementById('input-quantity').value = q;
+        }
+    </script>
 
     @include('footer')
