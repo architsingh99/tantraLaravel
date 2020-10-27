@@ -12,6 +12,9 @@ use App\Service;
 use App\ProductsCategory;
 use App\Cart;
 use App\Pincode;
+use App\ProductsOrder;
+use App\ServicesOrder;
+use App\Suborder;
 
 class WebController extends Controller
 {
@@ -142,4 +145,79 @@ class WebController extends Controller
          ];
             return $this->sendResponse($data, "Success");
     }
+
+    public function checkout(Request $request)
+    {
+        $cart = Cart::with('product')->where('user_id', Auth::user()->id)->get();
+        return view('checkout')->with('cart', $cart);
+    }
+
+    public function pincodeCheck(Request $request)
+    {
+        $pincode = Pincode::where('pincode', $request->input('pincode'))->get();
+        if(count($pincode) == 0)
+        {
+            $status = 201;
+        $message = "Sorry!! We do not deliver to this pincode.";
+        $deliveryCharge = 0;
+        }
+        else
+        {
+            $status = 200;
+            $message = "Delivery in " . $pincode[0]->days_for_delivery . " days. Delivery Charge: " . $pincode[0]->delivery_charge ;
+            $deliveryCharge = $pincode[0]->delivery_charge;
+        }
+        $data  = [
+            'status'                     => $status,
+            'message'                    => $message,
+            'deliveryCharge'             => $deliveryCharge
+     ];
+        return $this->sendResponse($data, "Success");
+    }
+
+    public function paysuccess(Request $request){
+        $cart = Cart::with('product')->where('user_id', Auth::user()->id)->get();
+        $total_item =DB::table('carts')->where('user_id', auth()->user()->id)->count();
+        foreach($cart as $key => $value)
+        {
+            $suborder = new Suborder();
+            $suborder->product_name = $value->product->name;
+            $suborder->order_id = $request->input('razorpay_order_id');  
+            $suborder->price = $value->product->selling_price;  
+            $suborder->quantity = $value->quantity; 
+            $suborder->total = ($value->product->selling_price * $value->quantity);  
+            $suborder->save();
+            Cart::find($value->id)->delete();
+        }
+        $order = new ProductsOrder();
+        $order->user_id = Auth::user()->id;
+        $order->order_id = $request->input('razorpay_order_id');  
+        $order->payment_id = $request->input('razorpay_payment_id');  
+        $order->total_items = $total_item;  
+        $order->subtotal = $request->input('subtotal');  
+        $order->name = $request->input('name');  
+        $order->phone_number = $request->input('phone');  
+        $order->address = $request->input('address');  
+        $order->landmark = $request->input('landmark');  
+        $order->pincode = $request->input('pincode');  
+        $order->delivery_charges = $request->input('deliveryCharge');  
+        $order->total_amount = $request->input('totalAmount');  
+        $order->save();
+        $arr = array('msg' => 'Payment successfully credited', 'status' => true);
+        return Response()->json($arr);    
+        }
+
+        public function payService(Request $request){
+            $services = Service::find($request->input('service_id'));
+            $service = new ServicesOrder();
+            $service->name = $services->name;
+            $service->duration = $request->input('duration');  
+            $service->price = $request->input('price');  
+            $service->user_id = Auth::user()->id;  
+            $service->order_id = $request->input('razorpay_order_id');  
+            $service->payment_id = $request->input('razorpay_payment_id'); 
+            $service->save();
+            $arr = array('msg' => 'Payment successfully credited', 'status' => true);
+            return Response()->json($arr);    
+            }
 }

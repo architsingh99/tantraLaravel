@@ -32,19 +32,31 @@ Route::post('add-to-cart', [WebController::class, 'addToCart'])->name('add-to-ca
 
 Route::post('check-pincode', [WebController::class, 'checkPincode'])->name('check-pincode');
 
-Route::get('cart', [WebController::class, 'cart'])->name('cart');
+Route::get('cart', [WebController::class, 'cart'])->name('cart')->middleware('auth');
 
 Route::get('delete-from-cart/{id}', [WebController::class, 'deleteFromCart'])->name('delete-from-cart');
 
 Route::post('update-cart', [WebController::class, 'updateCart'])->name('update-cart');
 
+Route::post('pincode', [WebController::class, 'pincodeCheck'])->name('pincode');
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('checkout', [WebController::class, 'checkout'])->name('checkout');
 
-Route::get('payment-razorpay', 'PaymentController@create')->name('paywithrazorpay');
-Route::post('payment', 'PaymentController@payment')->name('payment');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/paysuccess', [WebController::class, 'paysuccess'])->name('paysuccess')->middleware('auth');
+
+Route::post('/pay_service', [WebController::class, 'payService'])->name('pay_service')->middleware('auth');
+
+Route::get('payment-successsfull', function () {
+    return view('pay_response');
+})->name('payment-successsfull');
+
+Route::get('payment-razorpay', [PaymentController::class, 'create'])->name('paywithrazorpay');
+Route::post('payment', [PaymentController::class, 'payment'])->name('payment');

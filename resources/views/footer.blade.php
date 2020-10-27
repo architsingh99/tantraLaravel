@@ -17,6 +17,8 @@
 
     function addToCart(url)
         {
+            if(document.getElementById('loginUser').value == '1')
+            {
             let d = document.getElementById('input-quantity').value;
             $.ajax({
                 type: "POST",
@@ -34,6 +36,14 @@
         	})
                 }
             });
+            }
+            else {
+                swal({
+            		title: "Warning",
+            		text: "Login first to add to cart",
+            		icon: "warning"
+        	})
+            }
         }
 
         function verifyPincode(url)
@@ -91,7 +101,7 @@ function changeQuantity(quantity, sellingPrice, id, url)
     
     <!-- hs bottom footer wrapper End -->
     <!--main js file start-->
-    <script src="{{ asset('js/jquery_min.js')}}"></script>
+    
     <script src="{{ asset('js/bootstrap.js')}}"></script>
     <script src="{{ asset('js/modernizr.js')}}"></script>
     <script src="{{ asset('js/jquery.menu-aim.js')}}"></script>

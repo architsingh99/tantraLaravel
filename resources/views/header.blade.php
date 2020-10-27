@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css')}}" />
+    <script src="{{ asset('js/jquery_min.js')}}"></script>
     <!-- favicon links -->
     <link rel="shortcut icon" type="image/png" href="{{asset('images/header/favicon.ico')}}" />
 <script src='../../../google_analytics_auto.js'></script>
@@ -72,7 +73,18 @@
                                    
                                 </div>
                             </li>
-                            
+                            @if(Auth::check())
+                            <li>
+                                <div class="dropdown-wrapper menu-button">
+                                    <a class="menu-button">Orders</a>
+                                    <div class="drop-menu hs_mega_menu">
+                                        <a class="menu-button" href="#">Products</a>
+                                        <a class="menu-button" href="#">Orders</a>
+                                       
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
                             <li>
                                 <a class="menu-button" href="about.html">About-us</a>
                             </li>
@@ -163,7 +175,7 @@
                                                 </li>
                                                 <!-- .has-children -->
                                                 <li>
-                                                    <a href="services.html">Services</a>
+                                                    <a href="{{route('service')}}">Services</a>
                                                 </li>
                                                 <li class="has-children">
                                                     <a href="product.html">Products</a>

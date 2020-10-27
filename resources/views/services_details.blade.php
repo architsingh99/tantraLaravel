@@ -80,22 +80,22 @@
                                                                 <div class="row justify-content-start">
                                                                     <div class="col-sm-12">
                                                                         <div class="online_booking"> 
-                                                                            <input type="radio" name="textEditor" id="dreamweaver" checked> 
-                                                                            <label for="dreamweaver">3 Days Class</label>
+                                                                            <input type="radio" name="service" id="service" checked value="{{$service->id}}${{$service->three_days}}$3Days"> 
+                                                                            <label for="dreamweaver">3 Days Class (₹{{$service->three_days}})</label>
                                                                          </div>
                                                                         <div class="online_booking"> 
-                                                                            <input type="radio" name="textEditor" id="sublime"> 
-                                                                            <label for="sublime">6 Days Class</label>
+                                                                            <input type="radio" name="service" id="service" value="{{$service->id}}${{$service->six_days}}$6Days"> 
+                                                                            <label for="sublime">6 Days Class (₹{{$service->six_days}})</label>
                                                                          </div>
                                                                          <div class="online_booking">
-                                                                         <input type="radio" name="textEditor" id="1 month"> 
-                                                                         <label for="1 month">1 month offline certification</label>
+                                                                         <input type="radio" name="service" id="service" value="{{$service->id}}${{$service->one_month}}$1Month"> 
+                                                                         <label for="1 month">1 month offline certification (₹{{$service->one_month}})</label>
                                                                          </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                            
-                                                            <button type="button" class="hs_btn_hover" data-dismiss="modal">submit</button>
+                                                            <button type="button" class="hs_btn_hover buy_now" data-dismiss="modal">submit</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -185,4 +185,69 @@
         </div>
     </div>
     <!-- hs footer wrapper End -->
+    <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">
+    <input type="hidden" id="paySuccesRoute" value="{{route('pay_service')}}">
+    <input type="hidden" id="paymentStatusRoute" value="{{route('payment-successsfull')}}">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+         var SITEURL = '{{URL::to('')}}';
+         $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+         }); 
+         $('body').on('click', '.buy_now', function(e){
+             console.log(document.getElementById('service').value);
+             var d = document.getElementById('service').value.split("$");
+	     var options = {
+           "key": "{{ env('RAZOR_KEY') }}",
+           "amount": Number(d[1]) * 100, // 2000 paise = INR 20
+           "name": "ADI TANTRA YOAG",
+           "currency": "INR",
+           "description": "Payment",
+           "image": "{{ asset('/images/header/logo.png') }}",
+           "handler": function (response){
+                 $.ajax({
+                   url: document.getElementById('paySuccesRoute').value,
+                   type: 'post',
+                   dataType: 'json',
+                   data: {
+					   _token: document.getElementById('token').value,
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_order_id: "#" + randomString(10, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 
+                    price: Number(d[1]),
+                    service_id: d[0],
+                    duration: d[2]
+                   }, 
+                   success: function (msg) {
+					console.log("259", msg);
+					//document.getElementById('sellerPlanForm').submit();
+					document.location.href = document.getElementById('paymentStatusRoute').value;
+                      // window.location.href = SITEURL + 'razor-thank-you';
+                   }
+               });
+             
+           },
+          "prefill": {
+               "email": "{{Auth::user()->email}}",
+               "name": "{{Auth::user()->name}}"
+           },
+           "theme": {
+               "color": "#528FF0"
+           }
+         };
+         var rzp1 = new Razorpay(options);
+         rzp1.open();
+         e.preventDefault();
+		 });
+         /*document.getElementsClass('buy_plan1').onclick = function(e){
+           rzp1.open();
+           e.preventDefault();
+         }*/
+         function randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+}
+      </script>
 @include('footer')

@@ -122,6 +122,7 @@
                             </div>
                         </div>
                         <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">
+                        <input type="hidden" id="loginUser" value="{{Auth::check() ? '1' : '0'}}">
                         <div class="col-lg-8 col-md-7 col-sm-8 col-xs-12">
                             <div class="hs_shop_single_cart_btn">
                                 <ul>

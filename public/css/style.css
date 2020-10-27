@@ -1,41 +1,14 @@
-/*-------------------------------------
-    Template Name: Horoscope
-    Template URI: 
-    Description: This is html5 template
-    Author: webstrot
-    Author URI: http://webstrot.com
-    Version: 1.0
----------------------------------------
-    
-    CSS INDEX
-    ===================
-	
-    1. BODY
-	2. CUSTOM CSS / A
-	3. PRELOADER
-	4. NAVIGATION
-	5. SLIDER
-	6. ABOUT HOROSCROP
-	7. CHOOSE YOUR ZODIAC SIGN
-	8. OUR SERVICES
-	9. TODAY SLIDER
-	10. LATEST NEWS
-	11. WHAT CLIENTS ARE SAYING
-	12. TESTIMONIAL SLIDER
-	13. CLIENT SLIDER
-	14. SPEAK TO OUR EXPERT
-	15. FOOTER
+body{
+    overflow-x: hidden;
+    position: relative;
+}
 
----------------------------------------*/
-/*--------------
-1.Theme default CSS
---------------------------*/
 body, html {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
 	line-height: 23px;
-	color: #e0e0e0;
-
+	color: #cbcbcb;
+	/*overflow-x: hidden!important;*/
 	
 }
 body::-webkit-scrollbar-track{
@@ -257,7 +230,7 @@ body::-webkit-scrollbar-thumb{
 }
 /*---------- btn Css End -------*/
 a {
-	/* color: #797979; */
+	 color: #797979; 
 	text-decoration: none;
 }
 a:hover, a:focus {
@@ -628,7 +601,7 @@ ul{
 }
 .hs_navi_cart_wrapper{
 	float:right;
-	width:80px;
+	width:120px;
 }
 .hs_navi_searchbar_wrapper input{
 	width:calc(100% - 50px);
@@ -1069,7 +1042,7 @@ width:100%;
     transition: all 0.5s;
 }
 .carousel-nevigation > .next:hover, .carousel-nevigation > .prev:hover{
-	background:#61892f;
+	
 	    -webkit-transition: all 0.5s;
     -o-transition: all 0.5s;
     -ms-transition: all 0.5s;
@@ -3772,8 +3745,8 @@ width:100%;
 	float:left;
 	width:100%;
 	padding:20px;
-	background:#ffffff;
-	border:1px dashed #cecece;
+	background: #1a1a1a;
+	/*border:1px dashed #cecece;*/
 	border-bottom:0;
 }
 .hs_astro_img_wrapper img{
@@ -3784,7 +3757,7 @@ width:100%;
 	font-weight:bold;
 }
 .hs_astro_img_cont_wrapper h2 a{
-	color:#e0e0e0;
+	color:#ffffff;
 	-webkit-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	-ms-transition: all 0.5s;
@@ -3807,7 +3780,7 @@ width:100%;
 }
 .hs_astro_img_cont_wrapper li{
 	float:left;
-	color:#e0e0e0;
+	color:#ffffff;
 }
 .hs_astro_img_cont_wrapper li:last-child{
 	float:right;
@@ -3816,8 +3789,9 @@ width:100%;
 .hs_astro_img_bottom_cont{
 	float:left;
 	width:100%;
-	background:#ffffff;
-	border:1px dashed #cecece;
+background: #1a1a1a;
+	/*border:1px dashed #cecece;*/
+	box-shadow: 1px 0px 8px 0px #939393;
 	padding-top:15px;
 	padding-bottom:15px;
 }
@@ -4076,6 +4050,7 @@ width:100%;
 }
 .hs_kd_five_box_sec_wrapper{
 	margin-top:30px;
+	box-shadow: 1px 0px 8px 0px #939393;
 }
 .hs_kd_six_sec_input_wrapper{
 	float:left;
@@ -5582,6 +5557,19 @@ width:100%;
 	/* padding-top:100px; */
 	padding-bottom:100px;
 }
+.hs_blog_categories_main_wrapper_service{
+	background-color: #1a1a1a;
+	float:left;
+	width:100%;
+	/* padding-top:100px; */
+	padding-bottom:8em;
+}
+.hs_blog_categories_main_wrapper_card{
+    float:left;
+	width:100%;
+	/* padding-top:100px; */
+	padding-bottom:100px;
+}
 .hs_blog_left_sidebar_main_wrapper, .hs_blog_right_sidebar_main_wrapper{
 	float:left;
 	width:100%;
@@ -6391,7 +6379,8 @@ width:100%;
 	float:left;
 	width:100%;
 	margin-top:35px;
-	border:1px dashed #cccccc;
+	box-shadow: 1px 0px 8px 0px #e0e0e0;
+	/*border:1px dashed #cccccc;*/
 }
 .hs_shop_prodt_img_wrapper{
 	float:left;
@@ -6400,6 +6389,7 @@ width:100%;
 }
 .hs_shop_prodt_img_wrapper img{
 	width:100%;
+	max-height:11em;
 }
 .hs_shop_prodt_img_wrapper a{
 	position:absolute;
@@ -6447,7 +6437,7 @@ width:100%;
 .hs_shop_prodt_img_cont_wrapper{
 	float:left;
 	width:100%;
-	padding:10px 20px;
+	padding:10px 10px;
 }
 .hs_shop_prodt_img_cont_wrapper h2 a{
 	color:#e0e0e0;
@@ -6470,14 +6460,14 @@ width:100%;
 .hs_shop_prodt_img_cont_wrapper h3{
 	font-size:20px;
 	color:#fff;
-	padding-top:10px;
+	padding-top:15px;
 	padding-bottom:10px;
 }
 .hs_shop_prodt_img_cont_wrapper h3 span{
-	font-size:16px;
+	font-size:20px;
 }
 .hs_shop_prodt_img_cont_wrapper h3 del{
-	color:#797979;
+	color:#ffb400;
 }
 .hs_shop_prodt_img_cont_wrapper i{
 	color:#61892f;
@@ -6499,7 +6489,7 @@ width:100%;
 	height:100%;
 	float:left;
 	padding-top:60px;
-	padding-bottom:18px;
+	padding-bottom:60px;
 	position:relative;
 }
 .hs_shop_pp_img_overlay{
@@ -6522,6 +6512,12 @@ width:100%;
 }
 .hs_shop_pp_img_main_wrapper img{
 	width:100%;
+	max-height: 11em;
+	filter: brightness(0.8);
+}
+.hs_shop_pp_img_main_wrapper_services img{
+    	width:100%;
+
 	filter: brightness(0.8);
 }
 .hs_shop_pp_img_main_wrapper a{
@@ -6561,7 +6557,8 @@ width:100%;
 opacity: 0.6;
 }
 .hs_shop_pp_main_box_wrapper{
-	border:1px dashed #cccccc;
+	/*border:1px dashed #cccccc;*/
+	box-shadow: 1px 0px 8px 0px #e0e0e0;
 }
 .hs_shop_pp_img_main_wrapper a:hover{
 	    background: #1a1a1a;
@@ -6578,13 +6575,22 @@ opacity: 0.6;
 	float:left;
 	width:100%;
 	background:#61892f;
-	border-top:1px dashed #cccccc;
+	/*border-top:1px dashed #cccccc;*/
 }
 .hs_shop_pp_img_cont_main_wrapper h2 a{
-	font-size:22px;
+    
+	font-size:18px;
 	color: #040404;
 }
 .hs_shop_pp_img_cont_main_wrapper h2 a:hover{
+	color:#e0e0e0;
+}
+.hs_shop_pp_img_cont_main_wrapper h4 a{
+    font-weight: 700;
+	font-size:16px;
+	color: #040404;
+}
+.hs_shop_pp_img_cont_main_wrapper h4 a:hover{
 	color:#e0e0e0;
 }
 /**************------ SHOP CSS END -------*******************/
@@ -6647,6 +6653,17 @@ opacity: 0.6;
 	width:100%;
 	margin-top:20px;
 }
+.hs_shop_single_cart_icon_left_order{
+        float: left;
+    width: 50px;
+    height: 50px;
+    /* border: 1px dashed #d6d6d6; */
+    line-height: 50px;
+    text-align: center;
+    color: #ff880e;
+    font-size: 33px;
+}
+
 .hs_shop_single_cart_icon_left{
 	float:left;
 	width:70px;
@@ -6656,6 +6673,13 @@ opacity: 0.6;
 	text-align:center;
 	color:#ff880e;
 	font-size:30px;
+}
+.hs_shop_single_cart_icon_cont_left_order{
+
+    float: left;
+    width: calc(100% - 70px);
+    padding-left: 10px;
+    padding-top: 13px;
 }
 .hs_shop_single_cart_icon_cont_left{
 	float:left;
@@ -7152,4 +7176,61 @@ h2 {
 .colortobw img {
 	-webkit-filter: grayscale(0) !important;
 	filter: grayscale(0) !important;
+}
+@media (max-width: 1199px) and (min-width: 991px){
+       .hs_shop_pp_img_main_wrapper img{
+	width:100%;
+	max-height: 10em;
+	
+}
+}
+@media (max-width: 992px){
+   
+   body, html{
+   overflow-x: hidden!important;
+    }
+     .hs_shop_pp_img_cont_main_wrapper h2 a{
+        	font-size:14px;
+        	  
+    }
+    .hs_shop_prodt_img_cont_wrapper h3{
+        	font-size:14px;
+    }
+    .hs_shop_prodt_img_cont_wrapper h3 span{
+	font-size:14px;
+}
+    .hs_shop_pp_img_main_wrapper img{
+	width:100%;
+	max-height: 8em;
+	
+}
+.our_services img{
+    	max-height: 13em;
+}
+ 
+.modal-open{
+  position: relative;
+}
+    
+}
+.product_card{
+        height: 130px;
+}
+@media(min-width: 768px) and (max-width: 992px){
+	.hs_shop_pp_img_main_wrapper img{
+	width:100%;
+	max-height: 20em;
+}
+}
+.add_card{
+        height: 130px;
+    width: auto;
+}
+.add_img{
+      height: 100px;
+    width: auto;  
+}
+.btn-shopp{
+        color: #fff;
+        background-color: chocolate;
 }

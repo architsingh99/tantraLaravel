@@ -164,7 +164,7 @@
 							<a href="#">Add to Cart</a>
                         </div>
                         <div class="hs_shop_prodt_img_cont_wrapper hs_shop_pp_img_cont_main_wrapper">
-                            <h2><a href="product_details.html">{{$value->name}}</a></h2>
+                            <h2><a href="{{route('product-details', $value->id)}}">{{$value->name}}</a></h2>
                             <h3 style="color: #000;">₹{{$value->selling_price}} &nbsp;<del>₹{{$value->selling_price + ($value->selling_price * $value->discount_percentage / 100)}}</del>&nbsp; <span>({{$value->discount_percentage}}% off)</span></h3>
                             
                         </div>
@@ -217,7 +217,7 @@
 					<div class="hs_pp_bottom_btn_wrapper">
 						<div class="hs_pp_bottom_btn">
 							<ul>
-								<li><a href="services.html">View All</a></li>
+								<li><a href="{{route('service')}}">View All</a></li>
 							</ul>
 						</div>
 					</div>
