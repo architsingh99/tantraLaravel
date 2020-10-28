@@ -12,6 +12,23 @@
             </div>
         </div>
     </div>
+    <div id="myButton"></div>
+    <script type="text/javascript" src="{{ asset('js/floating-wpp.js') }}"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#myButton').floatingWhatsApp({
+            phone: '+918404052003',
+            popupMessage: 'Have any query? We are there to help you!',
+            message: "I want to know ",
+            showPopup: true,
+            showOnIE: false,
+            headerTitle: 'Welcome!',
+            headerColor: 'crimson',
+            backgroundColor: 'crimson',
+            buttonImage: "<img src='{{asset('images/whatsapp.svg') }}' />"
+        });
+    });
+</script>
 
     <script>
 
@@ -95,6 +112,11 @@ function changeQuantity(quantity, sellingPrice, id, url)
                     console.log(response)
                 }
             }); 
+        }
+
+        function submitForm(id)
+        {
+            document.getElementById(id).submit();
         }
 
         </script>

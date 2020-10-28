@@ -11,10 +11,12 @@ use App\Product;
 use App\Service;
 use App\ProductsCategory;
 use App\Cart;
+use App\Models\User;
 use App\Pincode;
 use App\ProductsOrder;
 use App\ServicesOrder;
 use App\Suborder;
+use Illuminate\Support\Facades\Hash;
 
 class WebController extends Controller
 {
@@ -220,4 +222,40 @@ class WebController extends Controller
             $arr = array('msg' => 'Payment successfully credited', 'status' => true);
             return Response()->json($arr);    
             }
+
+    public function account(Request $request)
+    {
+        return view('account');
+    }
+
+    public function updateAccount(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        if($request->input('password') != "" || $request->input('password') != null)
+        {
+            $password = Hash::make($request->input('password')); 
+        }
+        else
+        {
+            $password = $user->password;
+        }
+        DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->update(['name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $password]);
+        return redirect()->route('account');
+    }
+
+    public function productOrders(Request $request)
+    {
+        $orders = ProductsOrder::where('user_id', Auth::user()->id)->get();
+        return view('product_order')->with('orders', $orders);
+    }
+
+    public function serviceOrders(Request $request)
+    {
+        $orders = ServicesOrder::where('user_id', Auth::user()->id)->get();
+        return view('service_order')->with('orders', $orders);
+    }
 }

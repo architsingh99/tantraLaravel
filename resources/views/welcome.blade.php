@@ -156,12 +156,15 @@
                         </div>
                     </div>
                 </div>
+                <!-- <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">
+                <input type="hidden" value="1" id="input-quantity"/> -->
                 @foreach($product as $key => $value)
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-6">
                     <div class="hs_shop_pp_main_box_wrapper">
                         <div class="hs_shop_pp_img_main_wrapper colortobw img">
                             <img src="{{ Voyager::image( $value->main_image )}}" alt="product_img" />
-							<a href="#">Add to Cart</a>
+                            <?php $route = route('add-to-cart') ?>
+							<!-- <a href="#!" onclick="addToCart('{{$route}}')">Add to Cart</a> -->
                         </div>
                         <div class="hs_shop_prodt_img_cont_wrapper hs_shop_pp_img_cont_main_wrapper">
                             <h2><a href="{{route('product-details', $value->id)}}">{{$value->name}}</a></h2>
@@ -459,4 +462,5 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="loginUser" value="{{Auth::check() ? '1' : '0'}}">
     @include('footer')

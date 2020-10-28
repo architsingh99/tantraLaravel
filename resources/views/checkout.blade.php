@@ -5,14 +5,14 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 full_width">
                     <div class="hs_indx_title_left_wrapper">
-                        <h2>numerology</h2>
+                        <h2>Checkout</h2>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 full_width">
                     <div class="hs_indx_title_right_wrapper">
                         <ul>
-                            <li><a href="#">Home</a> &nbsp;&nbsp;&nbsp;> </li>
-                            <li>numerology</li>
+                            <li><a href="{{url('/')}}">Home</a> &nbsp;&nbsp;&nbsp;> </li>
+                            <li>Checkout</li>
                         </ul>
                     </div>
                 </div>
@@ -129,9 +129,9 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            Subtotal : <p id="subtotal">{{$total}}</p>
-                                            Delivery Charges : <p id="deliveryCharge"></p>
-                                            Total : <p id="total"></p>
+                                            <div style="font-size:18px" class="cart-text"> Subtotal : &nbsp <p id="subtotal">{{$total}}</p></div> <br>
+                                           <div style="font-size:18px"  class="cart-text"> Delivery Charges : &nbsp <p id="deliveryCharge"></p></div><br>
+                                           <div style="color: #e4ff00"class="cart-text"> Total : &nbsp <p id="total"></p></div>
                                         </div>
                                     </div>
                                 </div>
@@ -233,12 +233,12 @@
              var total = (Number(document.getElementById('totalValue').value)) + (Number(document.getElementById('pincodeValue').value));
              console.log(total);
 	     var options = {
-           "key": "{{ env('RAZOR_KEY') }}",
+           "key": "rzp_test_ko4EO60xHxMY8g",
            "amount": total * 100, // 2000 paise = INR 20
            "name": "ADI TANTRA YOAG",
            "currency": "INR",
            "description": "Payment",
-           "image": "{{ asset('/images/header/logo.png') }}",
+           "image": "http://test2.electronmedialab.in/images/header/logo.png",
            "handler": function (response){
                  $.ajax({
                    url: document.getElementById('paySuccesRoute').value,

@@ -57,7 +57,7 @@
                                                   <div class="hs_shop_prodt_main_box">
                                                       <div class="hs_shop_prodt_img_wrapper">
                                                           <img src="{{ Voyager::image( $value->main_image )}}" alt="shop_product">
-                                                          <a href="#">Add to Cart</a>
+                                                         
                                                       </div>
                                                       <div class="hs_shop_prodt_img_cont_wrapper">
                                                           <h2><a href="{{route('product-details', $value->id)}}">{{$value->name}}</h2>

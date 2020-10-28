@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/reset.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/floating-wpp.css') }}">
     <script src="{{ asset('js/jquery_min.js')}}"></script>
     <!-- favicon links -->
     <link rel="shortcut icon" type="image/png" href="{{asset('images/header/favicon.ico')}}" />
@@ -35,6 +36,21 @@
 </head>
 
 <body>
+@error('name')
+                                    <span class="invalid-feedback" role="alert" style="color:red;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert"  style="color:red;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert"  style="color:red;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
     <div class="hs_navigation_header_wrapper">
         <div class="container">
             <div class="row">
@@ -54,22 +70,23 @@
                             <li>
                                 <div class="dropdown-wrapper menu-button">
                                     <a class="menu-button" href="{{route('products')}}">Products</a>
-                                    <!-- <div class="drop-menu hs_mega_menu">
-                                        <a class="menu-button" href="#">Love Talisman</a>
-                                        <a class="menu-button" href="#">Laxmi/Mony Attraction Talisman</a>
-                                        <a class="menu-button" href="#">Vashi karam/Attraction Talisman</a>
-                                        <a class="menu-button" href="#">Herbs and Roots</a>
-                                        <a class="menu-button" href="#">Personal care Crystals</a>
-                                        <a class="menu-button" href="#">Charms</a>
-                                        <a class="menu-button" href="#">Condles Incense and Resins</a>
-                                        <a class="menu-button" href="#">Tantra Oils and Powders</a>
+                                    <div class="drop-menu hs_mega_menu">
+                                        @foreach($productCat as $key => $value)
+                                        <a class="menu-button" href="{{route('products2', $value->id)}}">{{$value->name}}</a>
+                                        @endforeach
                                        
-                                    </div> -->
+                                    </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="dropdown-wrapper menu-button">
                                     <a class="menu-button" href="{{route('service')}}">Services</a>
+                                    <div class="drop-menu hs_mega_menu">
+                                        @foreach($serviceCat as $key => $value)
+                                        <a class="menu-button" href="{{route('services', $value->id)}}">{{$value->name}}</a>
+                                        @endforeach
+                                       
+                                    </div>
                                    
                                 </div>
                             </li>
@@ -78,8 +95,8 @@
                                 <div class="dropdown-wrapper menu-button">
                                     <a class="menu-button">Orders</a>
                                     <div class="drop-menu hs_mega_menu">
-                                        <a class="menu-button" href="#">Products</a>
-                                        <a class="menu-button" href="#">Orders</a>
+                                        <a class="menu-button" href="{{route('product-orders')}}">Products</a>
+                                        <a class="menu-button" href="{{route('service-orders')}}">Service</a>
                                        
                                     </div>
                                 </div>
@@ -269,7 +286,7 @@
                                     @if(Auth::check())
                                     <div class="hs_navi_cart_wrapper">
                                         <div class="dropdown-wrapper menu-button">
-                                            <a class="menu-button" href="#"><i class="flaticon-shop"></i><span>3</span></a>
+                                            <a class="menu-button" href="#"><i class="flaticon-shop"></i></a>
                                             
                                         </div>
                                     </div>
@@ -289,7 +306,7 @@
                     @if(Auth::check())
                     <div class="hs_navi_cart_wrapper">
                         <div class="dropdown-wrapper menu-button">
-                            <a class="menu-button" href="{{route('cart')}}"><i class="flaticon-shop"></i><span>3</span></a>
+                            <a class="menu-button" href="{{route('cart')}}"><i class="flaticon-shop"></i></a>
                         </div>
                     </div>
                     @endif
@@ -300,9 +317,14 @@
                             </div>
                         @else
                         <div  class="dropdown-wrapper menu-button"> 
-                        <a style="color: #fff;" class="menu-button" href="#">
+                        <a style="color: #fff;" class="menu-button">
                         {{Auth::user()->name}}
                         <i style=" margin-left: 10px;" class="fa fa-user-circle-o"></i></a>
+                        <div class="drop-menu hs_mega_menu">
+                                        <a class="menu-button" href="{{route('account')}}">Your Account</a>
+                                        <a class="menu-button" href="{{route('logout')}}">Logout</a>
+                                       
+                                    </div>
                      </div>
                         
                             @endif

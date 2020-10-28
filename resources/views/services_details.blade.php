@@ -229,8 +229,8 @@
              
            },
           "prefill": {
-               "email": "{{Auth::user()->email}}",
-               "name": "{{Auth::user()->name}}"
+               "email": "{{Auth::check() ? Auth::user()->email : ''}}",
+               "name": "{{Auth::check() ? Auth::user()->name : ''}}"
            },
            "theme": {
                "color": "#528FF0"

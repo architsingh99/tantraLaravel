@@ -128,6 +128,7 @@
                                 <ul>
                                     <?php $route = route('add-to-cart') ?>
                                     <li><a href="#" onclick="addToCart('{{$route}}')">Add To Cart</a></li>
+                                    <!-- <li><a href="#" onclick="addToCart('{{$route}}')">Buy Now</a></li> -->
                                 </ul>
                             </div>
                         </div>

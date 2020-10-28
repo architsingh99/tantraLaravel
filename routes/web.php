@@ -60,3 +60,13 @@ Route::get('payment-successsfull', function () {
 
 Route::get('payment-razorpay', [PaymentController::class, 'create'])->name('paywithrazorpay');
 Route::post('payment', [PaymentController::class, 'payment'])->name('payment');
+
+Route::get('account', [WebController::class, 'account'])->name('account')->middleware('auth');
+
+Route::post('update-account', [WebController::class, 'updateAccount'])->name('update-account');
+
+Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+Route::get('product-orders', [WebController::class, 'productOrders'])->name('product-orders');
+
+Route::get('service-orders', [WebController::class, 'serviceOrders'])->name('service-orders');
