@@ -80,16 +80,16 @@
                                                                 <div class="row justify-content-start">
                                                                     <div class="col-sm-12">
                                                                         <div class="online_booking"> 
-                                                                            <input type="radio" name="service" id="service" checked value="{{$service->id}}${{$service->three_days}}$3Days"> 
-                                                                            <label for="dreamweaver">3 Days Class (₹{{$service->three_days}})</label>
+                                                                            <input type="radio" name="service" id="service1" checked value="{{$service->id}}${{$service->three_days}}$3Days"> 
+                                                                            <label for="service1">3 Days Class (₹{{$service->three_days}})</label>
                                                                          </div>
                                                                         <div class="online_booking"> 
-                                                                            <input type="radio" name="service" id="service" value="{{$service->id}}${{$service->six_days}}$6Days"> 
-                                                                            <label for="sublime">6 Days Class (₹{{$service->six_days}})</label>
+                                                                            <input type="radio" name="service" id="service2" value="{{$service->id}}${{$service->six_days}}$6Days"> 
+                                                                            <label for="service2">6 Days Class (₹{{$service->six_days}})</label>
                                                                          </div>
                                                                          <div class="online_booking">
-                                                                         <input type="radio" name="service" id="service" value="{{$service->id}}${{$service->one_month}}$1Month"> 
-                                                                         <label for="1 month">1 month offline certification (₹{{$service->one_month}})</label>
+                                                                         <input type="radio" name="service" id="service3" value="{{$service->id}}${{$service->one_month}}$1Month"> 
+                                                                         <label for="service3">1 month offline certification (₹{{$service->one_month}})</label>
                                                                          </div>
                                                                     </div>
                                                                 </div>
@@ -187,7 +187,7 @@
     <!-- hs footer wrapper End -->
     <input type="hidden" id="token" name="_token" value="{{csrf_token()}}">
     <input type="hidden" id="paySuccesRoute" value="{{route('pay_service')}}">
-    <input type="hidden" id="paymentStatusRoute" value="{{route('payment-successsfull')}}">
+    <input type="hidden" id="paymentStatusRoute" value="{{route('service-orders')}}">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
          var SITEURL = '{{URL::to('')}}';
@@ -197,10 +197,23 @@
            }
          }); 
          $('body').on('click', '.buy_now', function(e){
-             console.log(document.getElementById('service').value);
-             var d = document.getElementById('service').value.split("$");
+             console.log(document.getElementById('service1').value);
+             var d;
+             if(document.getElementById('service1').checked)
+             {
+                d = document.getElementById('service2').value.split("$");
+             }
+             else if(document.getElementById('service2').checked)
+             {
+                d = document.getElementById('service2').value.split("$");
+             }
+             else
+             {
+                d = document.getElementById('service3').value.split("$");
+             }
+              
 	     var options = {
-           "key": "{{ env('RAZOR_KEY') }}",
+           "key": "rzp_test_ko4EO60xHxMY8g",
            "amount": Number(d[1]) * 100, // 2000 paise = INR 20
            "name": "ADI TANTRA YOAG",
            "currency": "INR",

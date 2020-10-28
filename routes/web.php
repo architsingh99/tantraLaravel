@@ -70,3 +70,9 @@ Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'
 Route::get('product-orders', [WebController::class, 'productOrders'])->name('product-orders');
 
 Route::get('service-orders', [WebController::class, 'serviceOrders'])->name('service-orders');
+
+Route::get('bulk-buy', function () {
+    return view('bulk_buy');
+})->name('bulk-buy');
+
+Route::post('bulk_order_post', [WebController::class, 'bulkOrderPost'])->name('bulk_order_post');

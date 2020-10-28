@@ -101,6 +101,12 @@
                                     </div>
                                 </div>
                             </li>
+                            <li>
+                                <div class="dropdown-wrapper menu-button">
+                                    <a class="menu-button" href="{{route('bulk-buy')}}">Bulk Buy</a>
+                                    
+                                </div>
+                            </li>
                             @endif
                             <li>
                                 <a class="menu-button" href="about.html">About-us</a>

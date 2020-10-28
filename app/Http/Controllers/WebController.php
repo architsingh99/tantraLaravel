@@ -16,6 +16,7 @@ use App\Pincode;
 use App\ProductsOrder;
 use App\ServicesOrder;
 use App\Suborder;
+use App\BulkOrder;
 use Illuminate\Support\Facades\Hash;
 
 class WebController extends Controller
@@ -258,4 +259,14 @@ class WebController extends Controller
         $orders = ServicesOrder::where('user_id', Auth::user()->id)->get();
         return view('service_order')->with('orders', $orders);
     }
+
+    public function bulkOrderPost(Request $request){
+        $service = new BulkOrder();
+        $service->name = $request->input('name');
+        $service->email = $request->input('email');  
+        $service->phone = $request->input('phone');  
+        $service->comment = $request->input('comment');  
+        $service->save();
+        return view('bulk_buy')->with('msg', '1');   
+        }
 }
